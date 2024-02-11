@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"
+      integrity="sha512-WoO4Ih0CDOSLYafy22wZD/mcJ7k0ESLqtQsFa6zFKnEUrbtuGU+GkLtVhgt93xa2qewG5gKEC6CWlN8OaCTSVg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      canvas {
+        filter: url("#gooey");
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <svg>
+      <defs>
+        <!-- 필터 저장, svg마크킹 처리 영역 또한 정의가능, 재사용 컴포넌트를 정의하는 것 처럼 미리정의가능  -->
+        <filter id="gooey">
+          <!-- 필터를 정의하는 태그는 fe로 시작함 -->
+          <!-- stdDeviation 블러값 변경  (가로의 블러, 세로의 블러값) -->
+          <feGaussianBlur stdDeviation="40" in="sourceGraphic" result="blur1" />
+          <feColorMatrix
+            in="blur1"
+            mode="matrix"
+            values="1 0 0 0 0   0 1 0 0 0  0 0 1 0 0   0 0 0 100 -23"
+          />
+        </filter>
+      </defs>
+    </svg>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
